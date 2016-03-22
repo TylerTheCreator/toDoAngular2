@@ -1,4 +1,4 @@
-import { Component, EventEmitter } from 'angular2/core';
+import { Component, EventEmitter } from 'angular2/core'; //import the Component code
 import { TaskListComponent } from './task-list.component';
 import { Task } from './task.model';
 
