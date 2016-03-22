@@ -3,7 +3,7 @@ import {Task} from './task.model';
 
 @Pipe({
   name: "done", //refer to the pipe
-  pure: false
+  pure: false //false because we want it to ???
 })
 export class DonePipe implements PipeTransform {
   transform(input: Task[], args) {
