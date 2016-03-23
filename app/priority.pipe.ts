@@ -15,6 +15,10 @@ export class PriorityStatePipe implements PipeTransform {
         console.log(task.priority);
         return task.priority === "High";
       });
+    } else if (desiredDoneState === "Medium") {
+        return input.filter((task) => {
+          return task.priority === "Medium";
+      });
     } else if (desiredDoneState === "Low") {
       return input.filter((task) => {
         return task.priority === "Low";

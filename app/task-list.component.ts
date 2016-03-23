@@ -5,12 +5,13 @@ import { EditTaskDetailsComponent } from './edit-task-details.component';
 import { NewTaskComponent } from './new-task.component';
 import {DonePipe} from './done.pipe';
 import {PriorityStatePipe} from './priority.pipe';
+import {CategoryStatePipe } from './category.pipe';
 
 @Component({
   selector: 'task-list',
   inputs: ['taskList'],
   outputs: ['onTaskSelect'],
-  pipes: [DonePipe, PriorityStatePipe],
+  pipes: [DonePipe, PriorityStatePipe, CategoryStatePipe],
   directives: [TaskComponent, EditTaskDetailsComponent, NewTaskComponent],
   template: `
   <select (change)="onChange($event.target.value)" class="filter">
@@ -21,9 +22,15 @@ import {PriorityStatePipe} from './priority.pipe';
   <select (change)="onChangePriority($event.target.value)" class="filter">
     <option value="Low">Low</option>
     <option value="Medium">Medium</option>
-    <option value="High" selected>High</option>
+    <option value="High">High</option>
+    <option value="All" selected>All</option>
   </select>
-  <task-display *ngFor="#currentTask of taskList | done:filterDone | priority:filterPriority"
+  <select (change)="onChangeCategory($event.target.value)" class="filter">
+    <option value="Home">Home</option>
+    <option value="Work">Work</option>
+    <option value="All" selected>All</option>
+  </select>
+  <task-display *ngFor="#currentTask of taskList | done:filterDone | category:filterCategory"
     (click)="taskClicked(currentTask)"
     [class.selected]="currentTask === selectedTask"
     [task]="currentTask">
@@ -39,6 +46,7 @@ export class TaskListComponent {
   public selectedTask: Task;
   public filterDone: string = "notDone";
   public filterPriority: string = "High";
+  public filterCategory: string = "Home";
   constructor() {
     this.onTaskSelect = new EventEmitter();
   }
@@ -49,7 +57,7 @@ export class TaskListComponent {
   }
   createTask(task: any): void {
     this.taskList.push(
-      new Task(task[0], task[1], this.taskList.length)
+      new Task(task[0], task[1], task[2], this.taskList.length)
       // new Task(description, priority, this.taskList.length)
     );
   }
@@ -58,5 +66,8 @@ export class TaskListComponent {
   }
   onChangePriority(filterOption) {
     this.filterPriority = filterOption;
+  }
+  onChangeCategory(filterOption) {
+    this.filterCategory = filterOption
   }
 }
