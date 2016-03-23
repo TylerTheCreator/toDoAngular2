@@ -15,9 +15,9 @@ import {CategoryStatePipe } from './category.pipe';
   directives: [TaskComponent, EditTaskDetailsComponent, NewTaskComponent],
   template: `
   <select (change)="onChange($event.target.value)" class="filter">
-    <option value="all">Show All</option>
+    <option value="all" selected>Show All</option>
     <option value="done">Show Done</option>
-    <option value="notDone" selected>Show Not Done</option>
+    <option value="notDone" >Show Not Done</option>
   </select>
   <select (change)="onChangePriority($event.target.value)" class="filter">
     <option value="Low">Low</option>
@@ -44,9 +44,9 @@ export class TaskListComponent {
   public taskList: Task[];
   public onTaskSelect: EventEmitter<Task>;
   public selectedTask: Task;
-  public filterDone: string = "notDone";
+  public filterDone: string = "All";
   public filterPriority: string = "High";
-  public filterCategory: string = "Home";
+  public filterCategory: string = "All";
   constructor() {
     this.onTaskSelect = new EventEmitter();
   }
