@@ -3,11 +3,12 @@ import {Task} from './task.model';
 
 @Pipe({
   name: "done", //refer to the pipe
-  pure: false //false because we want it to ???
+  pure: false //false because we want it to false initially
 })
 export class DonePipe implements PipeTransform {
   transform(input: Task[], args) {
     var desiredDoneState = args[0];
+    // console.log(args);
     if(desiredDoneState === "done") {
       return input.filter((task) => {
         return task.done;

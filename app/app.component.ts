@@ -1,4 +1,4 @@
-import { Component, EventEmitter } from 'angular2/core'; //import the Component code
+import { Component, EventEmitter } from 'angular2/core';
 import { TaskListComponent } from './task-list.component';
 import { Task } from './task.model';
 
@@ -16,13 +16,13 @@ import { Task } from './task.model';
   `
 })
 export class AppComponent {
-  public tasks: Task[];
+  public tasks: Task[]; //an array of Task Objects
   constructor(){
     this.tasks = [
-      new Task("Create To-Do List app.", "high", 0),
-      new Task("Learn Kung Fu.", "low", 1),
-      new Task("Rewatch all the Lord of the Rings movies.", "medium", 2),
-      new Task("Do the laundry.", "low", 3)
+      new Task("Create To-Do List app.", "High", 0),
+      new Task("Learn Kung Fu.", "Low", 1),
+      new Task("Rewatch all the Lord of the Rings movies.", "Medium", 2),
+      new Task("Do the laundry.", "High", 3)
     ];
   }
   taskWasSelected(clickedTask: Task): void {

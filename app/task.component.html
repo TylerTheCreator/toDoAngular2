@@ -1,5 +1,5 @@
 <div>
   <input *ngIf="task.done" type="checkbox" checked (click)="toggleDone(false)"/>
   <input *ngIf="!task.done" type="checkbox" (click)="toggleDone(true)"/>
-  <label>{{ task.description }}</label>
+  <label>{{ task.description }} {{ task.priority }}  </label>
 </div>
