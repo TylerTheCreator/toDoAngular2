@@ -11,9 +11,20 @@ import {Task} from './task.model';
     <div class="task-form">
       <h3>Edit Description: </h3>
       <input [(ngModel)]="task.description" class="col-sm-8 input-lg task-form"/>
+      <select [(ngModel)]="task.priority">
+        <option value="Low" selected>Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
+      <select [(ngModel)]="task.category">
+        <option value="Home" selected>Home</option>
+        <option value="Work">Work</option>
+      </select>
     </div>
   `
 })
 export class EditTaskDetailsComponent {
   public task: Task;
+  public priority: Task;
+  public category: Task;
 }
